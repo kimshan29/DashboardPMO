@@ -1,0 +1,424 @@
+<style>
+    .blink {
+        animation: blink-animation 1.5s steps(5, start) infinite;
+        -webkit-animation: blink-animation 1.5s steps(5, start) infinite;
+
+
+    }
+
+    @keyframes blink-animation {
+        to {
+            visibility: hidden;
+        }
+    }
+
+    @-webkit-keyframes blink-animation {
+        to {
+            visibility: hidden;
+        }
+    }
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 20px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey;
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: red;
+        border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #b30000;
+    }
+
+    .boxTop {
+        background: #1d1d1d;
+        border: thin solid #292929;
+        float: left;
+        /* margin-left: 15px; */
+        text-align: center;
+    }
+
+    .legendOnMap {
+        position: absolute;
+        top: 12px;
+        left: 60px;
+        /* border: 1px solid #ffffff; */
+        width: 300px;
+        height: 46%;
+        /* overflow: scroll; */
+    }
+
+    .keteranganLegend {
+        position: absolute;
+        /* top: 12px; */
+        bottom: 17px;
+        left: 54px;
+        /* border: 1px solid #ffffff; */
+        width: 30%;
+    }
+
+    .legendRight {
+        position: absolute;
+        float: right;
+        display: flex;
+        justify-content: right;
+        width: 30%;
+        top: 6px;
+        right: 0;
+        /* width: 271px; */
+        height: 124px;
+    }
+
+    .goPivison {
+        background: #1976d2 !important;
+        position: absolute;
+        z-index: 999999;
+        /* bottom: 10%; */
+        /* left: 17%; */
+        padding: 10px;
+        cursor: pointer;
+        /* top: 10; */
+        margin-top: 10;
+    }
+
+    .bulet-Biru_legend {
+        width: 22px;
+        float: left;
+        background: linear-gradient(60deg, #26c6da, #0097a7);
+        height: 22px;
+        border-radius: 50%;
+        padding: 5px 0px;
+        color: #000000;
+        font-size: 10px;
+        text-align: center;
+        box-shadow: 0 5px 6px 0 rgba(0, 0, 0, .2), 0 5px 19px -10px rgba(0, 188, 212, .6);
+        margin: 5px;
+    }
+
+    .bulet-Hijau_legend {
+        width: 22px;
+        float: left;
+        background: linear-gradient(60deg, #66bb6a, #388e3c);
+        height: 22px;
+        border-radius: 50%;
+        padding: 5px 0px;
+        color: #000000;
+        font-size: 10px;
+        text-align: center;
+        box-shadow: 0 5px 20px 0 rgba(0, 0, 0, .2), 0 13px 24px -11px rgba(76, 175, 80, .6);
+        margin: 5px;
+    }
+
+    .bulet-Kuning_legend {
+        width: 22px;
+        float: left;
+        background: linear-gradient(60deg, #FFC107, #f7e22b);
+        height: 22px;
+        border-radius: 50%;
+        padding: 5px 0px;
+        color: #000000;
+        font-size: 10px;
+        text-align: center;
+        box-shadow: 0 5px 6px 0 rgba(0, 0, 0, .2), 0 5px 19px -10px #FFC107;
+        margin: 5px;
+    }
+
+    .bulet-Orange_legend {
+        width: 22px;
+        float: left;
+        background: linear-gradient(60deg, #ffa726, #f57c00);
+        height: 22px;
+        border-radius: 50%;
+        padding: 5px 0px;
+        color: #000000;
+        font-size: 10px;
+        text-align: center;
+        box-shadow: 0 5px 20px 0 rgba(0, 0, 0, .2), 0 13px 24px -11px rgba(255, 152, 0, .6);
+        margin: 5px;
+    }
+</style>
+<div class="row">
+    <div class="headerNewMaps">
+        <div class="ipLogo">
+            <img src="./../img/ip.png" style="width: 225px;margin: 4px;">
+        </div>
+        <div class="reocLabel">
+            <label style="font-size: 46px;position: relative;top: 17px;color: #3bd43b;">Reliability Efficiency Optimization Center</label>
+        </div>
+        <div class="reocLogo">
+            <img src="./../img/logo-reoc.jpeg" style="width: 150px;margin: 8px;padding: 9px 0px;">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-2">
+            <div style="height: 10%;background: #e1efbb url('https://www.w3schools.com/css/mountain.jpg');border: thin solid #292929;text-align: center;min-height: 90px;color: #808080 !important;background-size: cover;">
+                <div class='time-frame'>
+                    <div id='time-part'></div>
+                    <div id='date-part'></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 boxTop">
+            <div style="width: 100%;border-bottom:2px dotted #292929;padding: 3px">
+                TOTAL CAPACITY (MW)
+            </div>
+            <div style="width: 100%;font-size: 29px;padding: 9px;color: yellow;">
+                {{dataMW.totalCapacity}}
+            </div>
+        </div>
+        <div class="col-md-2 boxTop">
+            <div style="width: 100%;border-bottom:2px dotted #292929;padding: 3px">
+                TOTAL OUTPUT (MW)
+            </div>
+            <div style="width: 100%;font-size: 29px;padding: 9px;color: yellow;">
+                {{dataMW.totalOutput}}
+            </div>
+        </div>
+        <div class="col-md-2 boxTop">
+            <div style="width: 100%;border-bottom:2px dotted #292929;padding: 3px">
+                UNIT EXIXTING (MW)
+            </div>
+            <div style="width: 100%;font-size: 29px;padding: 9px;color: yellow;">
+                {{dataMW.unitExisting}}
+            </div>
+        </div>
+        <div class="col-md-2 boxTop">
+            <div style="width: 100%;border-bottom:2px dotted #292929;padding: 3px">
+                O&M JAWA (MW)
+            </div>
+            <div style="width: 100%;font-size: 29px;padding: 9px;color: yellow;">
+                {{dataMW.omJawa}}
+            </div>
+        </div>
+        <div class="col-md-2 boxTop" style="margin-bottom: 20px !important;">
+            <div style="width: 100%;border-bottom:2px dotted #292929;padding: 3px">
+                O&M LUAR JAWA (MW)
+            </div>
+            <div style="width: 100%;font-size: 29px;padding: 9px;color: yellow;">
+                {{dataMW.omLuarJawa}}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10">
+        <div style="width:100%; height:620px;position: relative;">
+            <div id="map" style="margin-left: 17px;"></div>
+            <div class="legendOnMap">
+
+                <div class="text-center">
+                    <p style="font-size: 18px;">
+                        <b>Plant Health</b> </p>
+
+
+                    <div class="framePH_">
+                        <div class="phList_">Sehat</div>
+                        <div class="bulet-Biru_">S</div>
+                    </div>
+                    <div class="framePH_">
+                        <div class="phList_">Prima</div>
+                        <div class="bulet-hijau_">P</div>
+                    </div>
+                    <div class="framePH_">
+                        <div class="phList_">Rawan</div>
+                        <div class="bulet-Kuning_">R</div>
+                    </div>
+                    <div class="framePH_">
+                        <div class="phList_">Kritis</div>
+                        <div class="bulet-orange_">K</div>
+                    </div>
+                    <div class="framePH_">
+                        <div class="phList_">Sehat</div>
+                        <div class="bulet-Biru_">S</div>
+                    </div>
+                    <div class="framePH_">
+                        <div class="phList_">Prima</div>
+                        <div class="bulet-hijau_">P</div>
+                    </div>
+                    <div class="framePH_">
+                        <div class="phList_">Rawan</div>
+                        <div class="bulet-Kuning_">R</div>
+                    </div>
+                    <div class="framePH_">
+                        <div class="phList_">Kritis</div>
+                        <div class="bulet-orange_">K</div>
+                    </div>
+                </div>
+            </div>
+            <!-- <a href="https://pivision.indonesiapower.co.id/PIVision/#/Displays/10486/Plant-Monitoring-System-P2IS?hidetoolbar&hidetimebar&mode=kiosk" style="color: #FFFFFF;position: absolute;" target="blank_">
+                <div class="goPivison">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                </div>
+
+            </a> -->
+            <div class="keteranganLegend">
+                <div>
+                    <p style="font-size: 16px;">
+                        <b>Legend</b> </p>
+                    <div>
+                        <div class="bulet-Biru_legend">S</div><label style="float:left;margin-top:7px">Sehat</label>
+                        <div class="bulet-Hijau_legend">P</div><label style="float:left;margin-top:7px">Prima</label>
+                        <div class="bulet-Kuning_legend">R</div><label style="float:left;margin-top:7px">Rawan</label>
+                        <div class="bulet-Orange_legend">K</div><label style="float:left;margin-top:7px">Kritis</label>
+                    </div>
+
+                </div>
+            </div>
+            <div class="legendRight">
+                <div>
+                    <p style="font-size: 18px;" class="text-center">
+                        <b>Chart Map</b> </p>
+                    <img src="./../img/chart_rizky.png" style="width: 100%;margin-top: 4px;cursor: pointer;" data-toggle="modal" data-target="#exampleModal">
+                    <!-- <a href="https://pivision.indonesiapower.co.id/PIVision/#/Displays/10485/Prognostic-Analytics-bearing-1-P2IS" target="blank_">
+                        <img src="./../img/Pi-no-background.png" style="width: 100%;margin-top: 4px;height: 188px;cursor: pointer;">
+                    </a> -->
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div style="background: #1d1d1d;border: thin solid #292929;padding: 10px;color: #808080 !important;text-align: center;">
+
+            <label id="lblNo">{{namaUnit}}</label>
+        </div>
+        <div style="min-height: 80px; height: 10%; max-height: 10%; text-align: center;margin-top: 5%;">
+            <div class="userNav" style="height: 100%;">
+                <div style="float: left;width: 46.5%;height:90%;background: linear-gradient(60deg,#ec407a,#c2185b);border: thin solid #c70952;color: #FFFFFF;">
+                    <div style="width: 100%;font-size: 14px;">
+                        EAF
+                    </div>
+                    <div style="width: 100%;font-size: 27px;" id="kt01">
+                        0
+                    </div>
+                </div>
+                <div style="float: left;width: 46.5%;height:90%;background: linear-gradient(60deg,#ec407a,#c2185b);border: thin solid #c70952;color: #FFFFFF;margin-left:4%">
+                    <div style="width: 100%;font-size: 14px;">
+                        CF
+                    </div>
+                    <div style="width: 100%;font-size: 27px;" id="kt02">
+                        0
+                    </div>
+                </div>
+
+            </div>
+            <div class="userNav" style="height: 100%;margin-top: 2px;">
+                <div style="float: left;width: 46.5%;height:90%;background: linear-gradient(60deg,#ec407a,#c2185b);border: thin solid #c70952;color: #FFFFFF;">
+                    <div style="width: 100%;font-size: 14px;">
+                        EAF
+                    </div>
+                    <div style="width: 100%;font-size: 27px;" id="kt01">
+                        0
+                    </div>
+                </div>
+                <div style="float: left;width: 46.5%;height:90%;background: linear-gradient(60deg,#ec407a,#c2185b);border: thin solid #c70952;color: #FFFFFF;margin-left:4%">
+                    <div style="width: 100%;font-size: 14px;">
+                        CF
+                    </div>
+                    <div style="width: 100%;font-size: 27px;" id="kt02">
+                        0
+                    </div>
+                </div>
+
+            </div>
+            <div class="userNav" style="height: 100%;margin-top: 2px;">
+                <div style="float: left;width: 46.5%;height:90%;background: linear-gradient(60deg,#ec407a,#c2185b);border: thin solid #c70952;color: #FFFFFF;">
+                    <div style="width: 100%;font-size: 14px;">
+                        EAF
+                    </div>
+                    <div style="width: 100%;font-size: 27px;" id="kt01">
+                        0
+                    </div>
+                </div>
+                <div style="float: left;width: 46.5%;height:90%;background: linear-gradient(60deg,#ec407a,#c2185b);border: thin solid #c70952;color: #FFFFFF;margin-left:4%">
+                    <div style="width: 100%;font-size: 14px;">
+                        CF
+                    </div>
+                    <div style="width: 100%;font-size: 27px;" id="kt02">
+                        0
+                    </div>
+                </div>
+
+            </div>
+            <div class="userNav" style="height: 100%;margin-top: 2px;">
+                <div style="float: left;width: 46.5%;height:90%;background: linear-gradient(60deg,#ec407a,#c2185b);border: thin solid #c70952;color: #FFFFFF;">
+                    <div style="width: 100%;font-size: 14px;">
+                        EAF
+                    </div>
+                    <div style="width: 100%;font-size: 27px;" id="kt01">
+                        0
+                    </div>
+                </div>
+                <div style="float: left;width: 46.5%;height:90%;background: linear-gradient(60deg,#ec407a,#c2185b);border: thin solid #c70952;color: #FFFFFF;margin-left:4%">
+                    <div style="width: 100%;font-size: 14px;">
+                        CF
+                    </div>
+                    <div style="width: 100%;font-size: 27px;" id="kt02">
+                        0
+                    </div>
+                </div>
+
+            </div>
+            <div class="userNav" style="height: 100%;margin-top: 2px;">
+                <div style="float: left;width: 46.5%;height:90%;background: linear-gradient(60deg,#ec407a,#c2185b);border: thin solid #c70952;color: #FFFFFF;">
+                    <div style="width: 100%;font-size: 14px;">
+                        EAF
+                    </div>
+                    <div style="width: 100%;font-size: 27px;" id="kt01">
+                        0
+                    </div>
+                </div>
+                <div style="float: left;width: 46.5%;height:90%;background: linear-gradient(60deg,#ec407a,#c2185b);border: thin solid #c70952;color: #FFFFFF;margin-left:4%">
+                    <div style="width: 100%;font-size: 14px;">
+                        CF
+                    </div>
+                    <div style="width: 100%;font-size: 27px;" id="kt02">
+                        0
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <label>View Chart</label>
+                <a href="https://pivision.indonesiapower.co.id/PIVision/#/Displays/10485/Prognostic-Analytics-bearing-1-P2IS" target="blank_">
+                    <img src="./../img/pi.png" style="width: 100%;margin-top: 4px;height: 97px;cursor: pointer;">
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<!-- <div style="background: #1d1d1d;position: fixed;bottom: 10px;border: thin solid #292929;color: white !important;z-index: 999;padding: 15px;width: 100%;font-size: 18px;">
+    <marquee behavior="scroll" direction="left">Internal cek mill Internal cek mill Perbaikan Breaker Booster BFPT Perbaikan breaker vakum Pump Balancing dan pergantian Bearing ID Fan 3BTie in beltconveyor 5 Dan Perbaikan CWP Rencana s.d. 27 Feb 2020 pkl 23.55</marquee>
+</div> -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document" style="width: 97%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Turbine Monitoring</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <iframe src="http://dispatch2.indonesiapower.co.id:8184/turbin_blt1.html" style="width: 100%;border:none;height: 700px;"></iframe>
+            </div>
+        </div>
+    </div>
+</div>

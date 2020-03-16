@@ -1,0 +1,26 @@
+<svg width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <linearGradient y2="Infinity" y1="Infinity" x2="Infinity" x1="Infinity" id="SVGID_2_">
+   <stop stop-color="#FFFFFF" stop-opacity="0" offset="0"/>
+   <stop stop-color="#FFFFFF" offset="1"/>
+  </linearGradient>
+  <linearGradient y2="Infinity" y1="Infinity" x2="Infinity" x1="Infinity" id="SVGID_3_">
+   <stop stop-color="#FFFFFF" stop-opacity="0" offset="0"/>
+   <stop stop-color="#FFFFFF" stop-opacity="0.5" offset="1"/>
+  </linearGradient>
+ </defs>
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <path id="svg_1" fill="#FF2929" d="m256,72.3c-101.4,0 -183.7,82.3 -183.7,183.7l367.3,0c0.1,-101.4 -82.2,-183.7 -183.6,-183.7z"/>
+  <path id="svg_3" fill="#ffffff" d="m256,439.7c-101.4,0 -183.7,-82.2 -183.7,-183.7l367.3,0c0.1,101.4 -82.2,183.7 -183.6,183.7z"/>
+  <path id="svg_4" fill="url(#SVGID_2_)" d="m256,426c-93.9,0 -170,-76.1 -170,-170l340,0c0,93.9 -76.1,170 -170,170z"/>
+  <path id="svg_5" fill="#ff0000" d="m439.4,246.1l-366.8,0c-0.2,3.3 -0.3,6.6 -0.3,9.9s0.1,6.6 0.3,9.9l366.8,0c0.2,-3.3 0.3,-6.6 0.3,-9.9s-0.1,-6.6 -0.3,-9.9z"/>
+  <circle id="svg_6" r="49.2" fill="#F5F5F5" cy="256" cx="256"/>
+  <circle id="svg_7" r="33.4" fill="#FF2929" cy="256" cx="256"/>
+  <circle id="svg_8" r="33.4" fill="url(#SVGID_3_)" cy="256" cx="256"/>
+ </g>
+</svg>

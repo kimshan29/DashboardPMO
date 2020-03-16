@@ -1,0 +1,36 @@
+@font-face {
+    font-family: MechanicalPencil;
+    src: url('./font/Mechanic_Pencil.ttf');
+}
+
+@font-face {
+    font-family: QuickPencil-Regular;
+    src: url('./font/QuickPencil-Regular.ttf');
+}
+
+span {
+    color: blue;
+
+}
+
+h5 {
+    color: black;
+}
+
+p {
+    color: black;
+}
+
+li {
+    background-color: black;
+
+}
+
+.carousel-control-next-icon {
+    background-color: #000000 !important;
+
+}
+
+.carousel-control-prev-icon {
+    background-color: #000000 !important;
+}
