@@ -645,3 +645,295 @@ body {
     margin-top: 10px;
     margin-bottom: -10px;
 }
+
+.blink {
+    animation: blink-animation 1.5s steps(5, start) infinite;
+    -webkit-animation: blink-animation 1.5s steps(5, start) infinite;
+
+
+}
+
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+
+@-webkit-keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: red;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #b30000;
+}
+
+.boxTop {
+    background: #1d1d1d;
+    border: thin solid #292929;
+    float: left;
+    /* margin-left: 15px; */
+    text-align: center;
+}
+
+.legendOnMap {
+    position: absolute;
+    top: 12px;
+    left: 60px;
+    /* border: 1px solid #ffffff; */
+    width: 300px;
+    height: 46%;
+    /* overflow: scroll; */
+}
+
+.keteranganLegend {
+    position: absolute;
+    /* top: 12px; */
+    bottom: 17px;
+    left: 54px;
+    /* border: 1px solid #ffffff; */
+    width: 30%;
+}
+
+.legendRight {
+    position: absolute;
+    float: right;
+    display: flex;
+    justify-content: right;
+    width: 30%;
+    top: 6px;
+    right: 0;
+    /* width: 271px; */
+    height: 124px;
+}
+
+.goPivison {
+    background: #1976d2 !important;
+    position: absolute;
+    z-index: 999999;
+    /* bottom: 10%; */
+    /* left: 17%; */
+    padding: 10px;
+    cursor: pointer;
+    /* top: 10; */
+    margin-top: 10;
+}
+
+.bulet-Biru_legend {
+    width: 22px;
+    float: left;
+    background: linear-gradient(60deg, #26c6da, #0097a7);
+    height: 22px;
+    border-radius: 50%;
+    padding: 5px 0px;
+    color: #000000;
+    font-size: 10px;
+    text-align: center;
+    box-shadow: 0 5px 6px 0 rgba(0, 0, 0, .2), 0 5px 19px -10px rgba(0, 188, 212, .6);
+    margin: 5px;
+}
+
+.bulet-Hijau_legend {
+    width: 22px;
+    float: left;
+    background: linear-gradient(60deg, #66bb6a, #388e3c);
+    height: 22px;
+    border-radius: 50%;
+    padding: 5px 0px;
+    color: #000000;
+    font-size: 10px;
+    text-align: center;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, .2), 0 13px 24px -11px rgba(76, 175, 80, .6);
+    margin: 5px;
+}
+
+.bulet-Kuning_legend {
+    width: 22px;
+    float: left;
+    background: linear-gradient(60deg, #FFC107, #f7e22b);
+    height: 22px;
+    border-radius: 50%;
+    padding: 5px 0px;
+    color: #000000;
+    font-size: 10px;
+    text-align: center;
+    box-shadow: 0 5px 6px 0 rgba(0, 0, 0, .2), 0 5px 19px -10px #FFC107;
+    margin: 5px;
+}
+
+.bulet-Orange_legend {
+    width: 22px;
+    float: left;
+    background: linear-gradient(60deg, #ffa726, #f57c00);
+    height: 22px;
+    border-radius: 50%;
+    padding: 5px 0px;
+    color: #000000;
+    font-size: 10px;
+    text-align: center;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, .2), 0 13px 24px -11px rgba(255, 152, 0, .6);
+    margin: 5px;
+}
+
+.card-pink {
+    float: left;
+    width: 46.5%;
+    height: 90%;
+    background: linear-gradient(60deg, #ec407a, #c2185b);
+    border: thin solid #c70952;
+    color: #FFFFFF;
+    margin-right: 5px;
+    margin-bottom: 7px;
+}
+
+.card-grey {
+    float: left;
+    width: 46.5%;
+    height: 90%;
+    background: linear-gradient(60deg, #a0969a, #a69da1);
+    border: thin solid #a0969a;
+    color: #FFFFFF;
+    margin-right: 5px;
+    margin-bottom: 7px;
+}
+
+.mySlides {
+    display: none;
+}
+
+.w3-animate-fading {
+    animation: fading 10s infinite
+}
+
+@keyframes fading {
+    0% {
+        opacity: 0
+    }
+
+    50% {
+        opacity: 1
+    }
+
+    100% {
+        opacity: 0
+    }
+}
+
+.w3-animate-opacity {
+    animation: opac 0.8s
+}
+
+@keyframes opac {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+.w3-animate-top {
+    position: relative;
+    animation: animatetop 0.4s
+}
+
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+.w3-animate-left {
+    position: relative;
+    animation: animateleft 0.4s
+}
+
+@keyframes animateleft {
+    from {
+        left: -300px;
+        opacity: 0
+    }
+
+    to {
+        left: 0;
+        opacity: 1
+    }
+}
+
+.w3-animate-right {
+    position: relative;
+    animation: animateright 0.4s
+}
+
+@keyframes animateright {
+    from {
+        right: -300px;
+        opacity: 0
+    }
+
+    to {
+        right: 0;
+        opacity: 1
+    }
+}
+
+.w3-animate-bottom {
+    position: relative;
+    animation: animatebottom 0.4s
+}
+
+@keyframes animatebottom {
+    from {
+        bottom: -300px;
+        opacity: 0
+    }
+
+    to {
+        bottom: 0;
+        opacity: 1
+    }
+}
+
+.w3-animate-zoom {
+    animation: animatezoom 0.6s
+}
+
+@keyframes animatezoom {
+    from {
+        transform: scale(0)
+    }
+
+    to {
+        transform: scale(1)
+    }
+}
+
+.run-animation {
+    animation: my-fancy-animation 5s 1;
+}

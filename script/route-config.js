@@ -1,4 +1,4 @@
-var mainApp = angular.module('mainApp', ['ngRoute', 'ngSanitize', 'ngCookies']);
+var mainApp = angular.module('mainApp', ['ngRoute', 'ngSanitize', 'ngCookies', 'ui.bootstrap']);
 
 
 mainApp.run(function ($rootScope, $location, $routeParams, $cookies, HttpRequest, Constant) {

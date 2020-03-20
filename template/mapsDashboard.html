@@ -1,152 +1,3 @@
-<style>
-    .blink {
-        animation: blink-animation 1.5s steps(5, start) infinite;
-        -webkit-animation: blink-animation 1.5s steps(5, start) infinite;
-
-
-    }
-
-    @keyframes blink-animation {
-        to {
-            visibility: hidden;
-        }
-    }
-
-    @-webkit-keyframes blink-animation {
-        to {
-            visibility: hidden;
-        }
-    }
-
-    /* width */
-    ::-webkit-scrollbar {
-        width: 20px;
-    }
-
-    /* Track */
-    ::-webkit-scrollbar-track {
-        box-shadow: inset 0 0 5px grey;
-        border-radius: 10px;
-    }
-
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-        background: red;
-        border-radius: 10px;
-    }
-
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-        background: #b30000;
-    }
-
-    .boxTop {
-        background: #1d1d1d;
-        border: thin solid #292929;
-        float: left;
-        /* margin-left: 15px; */
-        text-align: center;
-    }
-
-    .legendOnMap {
-        position: absolute;
-        top: 12px;
-        left: 60px;
-        /* border: 1px solid #ffffff; */
-        width: 300px;
-        height: 46%;
-        /* overflow: scroll; */
-    }
-
-    .keteranganLegend {
-        position: absolute;
-        /* top: 12px; */
-        bottom: 17px;
-        left: 54px;
-        /* border: 1px solid #ffffff; */
-        width: 30%;
-    }
-
-    .legendRight {
-        position: absolute;
-        float: right;
-        display: flex;
-        justify-content: right;
-        width: 30%;
-        top: 6px;
-        right: 0;
-        /* width: 271px; */
-        height: 124px;
-    }
-
-    .goPivison {
-        background: #1976d2 !important;
-        position: absolute;
-        z-index: 999999;
-        /* bottom: 10%; */
-        /* left: 17%; */
-        padding: 10px;
-        cursor: pointer;
-        /* top: 10; */
-        margin-top: 10;
-    }
-
-    .bulet-Biru_legend {
-        width: 22px;
-        float: left;
-        background: linear-gradient(60deg, #26c6da, #0097a7);
-        height: 22px;
-        border-radius: 50%;
-        padding: 5px 0px;
-        color: #000000;
-        font-size: 10px;
-        text-align: center;
-        box-shadow: 0 5px 6px 0 rgba(0, 0, 0, .2), 0 5px 19px -10px rgba(0, 188, 212, .6);
-        margin: 5px;
-    }
-
-    .bulet-Hijau_legend {
-        width: 22px;
-        float: left;
-        background: linear-gradient(60deg, #66bb6a, #388e3c);
-        height: 22px;
-        border-radius: 50%;
-        padding: 5px 0px;
-        color: #000000;
-        font-size: 10px;
-        text-align: center;
-        box-shadow: 0 5px 20px 0 rgba(0, 0, 0, .2), 0 13px 24px -11px rgba(76, 175, 80, .6);
-        margin: 5px;
-    }
-
-    .bulet-Kuning_legend {
-        width: 22px;
-        float: left;
-        background: linear-gradient(60deg, #FFC107, #f7e22b);
-        height: 22px;
-        border-radius: 50%;
-        padding: 5px 0px;
-        color: #000000;
-        font-size: 10px;
-        text-align: center;
-        box-shadow: 0 5px 6px 0 rgba(0, 0, 0, .2), 0 5px 19px -10px #FFC107;
-        margin: 5px;
-    }
-
-    .bulet-Orange_legend {
-        width: 22px;
-        float: left;
-        background: linear-gradient(60deg, #ffa726, #f57c00);
-        height: 22px;
-        border-radius: 50%;
-        padding: 5px 0px;
-        color: #000000;
-        font-size: 10px;
-        text-align: center;
-        box-shadow: 0 5px 20px 0 rgba(0, 0, 0, .2), 0 13px 24px -11px rgba(255, 152, 0, .6);
-        margin: 5px;
-    }
-</style>
 <div class="row">
     <div class="headerNewMaps">
         <div class="ipLogo">
@@ -156,7 +7,7 @@
             <label style="font-size: 46px;position: relative;top: 17px;color: #3bd43b;">Reliability Efficiency Optimization Center</label>
         </div>
         <div class="reocLogo">
-            <img src="./../img/logo-reoc.jpeg" style="width: 150px;margin: 8px;padding: 9px 0px;">
+            <img src="./../img/logo-reoc.png" style="width: 150px;margin: 8px;padding: 9px 0px;">
         </div>
     </div>
 </div>
@@ -216,45 +67,37 @@
     <div class="col-md-10">
         <div style="width:100%; height:580px;position: relative;">
             <div id="map" style="margin-left: 17px;"></div>
-            <div class="legendOnMap">
+            <div class="legendOnMap" id="leftSlide">
 
                 <div class="text-center">
                     <p style="font-size: 18px;">
                         <b>Plant Health</b> </p>
 
+                    <div class="run-animation">
+                        <b>Mesin: {{namaMesin}}</b>
+                        <div ng-repeat="msn in dataPH">
+                            <!-- <label>{{msn.parameter1}}</label> -->
+                            <div class="framePH_">
+                                <div class="phList_">{{msn.parameter1}}</div>
+                                <div ng-if="msn.value == 'BIRU'">
+                                    <div class="bulet-Biru_">S</div>
+                                </div>
+                                <div ng-if="msn.value == 'HIJAU'">
+                                    <div class="bulet-hijau_">P</div>
+                                </div>
+                                <div ng-if="msn.value == 'KUNING'">
+                                    <div class="bulet-Kuning_">R</div>
+                                </div>
+                                <div ng-if="msn.value == 'ORANGE'">
+                                    <div class="bulet-orange_">K</div>
+                                </div>
 
-                    <div class="framePH_">
-                        <div class="phList_">Sehat</div>
-                        <div class="bulet-Biru_">S</div>
+                            </div>
+                        </div>
+
+
                     </div>
-                    <div class="framePH_">
-                        <div class="phList_">Prima</div>
-                        <div class="bulet-hijau_">P</div>
-                    </div>
-                    <div class="framePH_">
-                        <div class="phList_">Rawan</div>
-                        <div class="bulet-Kuning_">R</div>
-                    </div>
-                    <div class="framePH_">
-                        <div class="phList_">Kritis</div>
-                        <div class="bulet-orange_">K</div>
-                    </div>
-                    <div class="framePH_">
-                        <div class="phList_">Sehat</div>
-                        <div class="bulet-Biru_">S</div>
-                    </div>
-                    <div class="framePH_">
-                        <div class="phList_">Prima</div>
-                        <div class="bulet-hijau_">P</div>
-                    </div>
-                    <div class="framePH_">
-                        <div class="phList_">Rawan</div>
-                        <div class="bulet-Kuning_">R</div>
-                    </div>
-                    <div class="framePH_">
-                        <div class="phList_">Kritis</div>
-                        <div class="bulet-orange_">K</div>
-                    </div>
+
                 </div>
                 <a href="https://pivision.indonesiapower.co.id/PIVision/#/Displays/10486/Plant-Monitoring-System-P2IS?hidetoolbar&hidetimebar&mode=kiosk" style="color: #FFFFFF;position: absolute;" target="blank_">
                     <div class="goPivison">
@@ -266,13 +109,13 @@
 
             <div class="keteranganLegend">
                 <div>
-                    <p style="font-size: 16px;">
+                    <p style="font-size: 14px;">
                         <b>Legend</b> </p>
                     <div>
-                        <div class="bulet-Biru_legend">S</div><label style="float:left;margin-top:7px">Sehat</label>
-                        <div class="bulet-Hijau_legend">P</div><label style="float:left;margin-top:7px">Prima</label>
-                        <div class="bulet-Kuning_legend">R</div><label style="float:left;margin-top:7px">Rawan</label>
-                        <div class="bulet-Orange_legend">K</div><label style="float:left;margin-top:7px">Kritis</label>
+                        <div class="bulet-Biru_legend">S</div><label style="float:left;margin-top:7px;font-size: 12px;">Sehat</label>
+                        <div class="bulet-Hijau_legend">P</div><label style="float:left;margin-top:7px;font-size: 12px;">Prima</label>
+                        <div class="bulet-Kuning_legend">R</div><label style="float:left;margin-top:7px;font-size: 12px;">Rawan</label>
+                        <div class="bulet-Orange_legend">K</div><label style="float:left;margin-top:7px;font-size: 12px;">Kritis</label>
                     </div>
 
                 </div>
@@ -298,100 +141,15 @@
         </div>
         <div style="min-height: 80px; height: 10%; max-height: 10%; text-align: center;margin-top: 5%;">
             <div class="userNav" style="height: 100%;">
-                <div style="float: left;width: 46.5%;height:90%;background: linear-gradient(60deg,#ec407a,#c2185b);border: thin solid #c70952;color: #FFFFFF;">
-                    <div style="width: 100%;font-size: 14px;">
-                        EAF
+                <div class="{{lsPE.status == true ? 'card-pink': 'card-grey'}}" ng-repeat="lsPE in dataPE">
+                    <div style="width: 100%;font-size: 11px; padding-top: 10px;" uib-tooltip="{{lsPE.nama}}">
+                        {{lsPE.kode}}
                     </div>
-                    <div style="width: 100%;font-size: 27px;" id="kt01">
-                        0
-                    </div>
-                </div>
-                <div style="float: left;width: 46.5%;height:90%;background: linear-gradient(60deg,#ec407a,#c2185b);border: thin solid #c70952;color: #FFFFFF;margin-left:4%">
-                    <div style="width: 100%;font-size: 14px;">
-                        CF
-                    </div>
-                    <div style="width: 100%;font-size: 27px;" id="kt02">
-                        0
+                    <div style="width: 100%;font-size: 15px;" id="kt01">
+                        {{lsPE.nilai}}
                     </div>
                 </div>
-
-            </div>
-            <div class="userNav" style="height: 100%;margin-top: 2px;">
-                <div style="float: left;width: 46.5%;height:90%;background: linear-gradient(60deg,#ec407a,#c2185b);border: thin solid #c70952;color: #FFFFFF;">
-                    <div style="width: 100%;font-size: 14px;">
-                        EAF
-                    </div>
-                    <div style="width: 100%;font-size: 27px;" id="kt01">
-                        0
-                    </div>
-                </div>
-                <div style="float: left;width: 46.5%;height:90%;background: linear-gradient(60deg,#ec407a,#c2185b);border: thin solid #c70952;color: #FFFFFF;margin-left:4%">
-                    <div style="width: 100%;font-size: 14px;">
-                        CF
-                    </div>
-                    <div style="width: 100%;font-size: 27px;" id="kt02">
-                        0
-                    </div>
-                </div>
-
-            </div>
-            <div class="userNav" style="height: 100%;margin-top: 2px;">
-                <div style="float: left;width: 46.5%;height:90%;background: linear-gradient(60deg,#ec407a,#c2185b);border: thin solid #c70952;color: #FFFFFF;">
-                    <div style="width: 100%;font-size: 14px;">
-                        EAF
-                    </div>
-                    <div style="width: 100%;font-size: 27px;" id="kt01">
-                        0
-                    </div>
-                </div>
-                <div style="float: left;width: 46.5%;height:90%;background: linear-gradient(60deg,#ec407a,#c2185b);border: thin solid #c70952;color: #FFFFFF;margin-left:4%">
-                    <div style="width: 100%;font-size: 14px;">
-                        CF
-                    </div>
-                    <div style="width: 100%;font-size: 27px;" id="kt02">
-                        0
-                    </div>
-                </div>
-
-            </div>
-            <div class="userNav" style="height: 100%;margin-top: 2px;">
-                <div style="float: left;width: 46.5%;height:90%;background: linear-gradient(60deg,#ec407a,#c2185b);border: thin solid #c70952;color: #FFFFFF;">
-                    <div style="width: 100%;font-size: 14px;">
-                        EAF
-                    </div>
-                    <div style="width: 100%;font-size: 27px;" id="kt01">
-                        0
-                    </div>
-                </div>
-                <div style="float: left;width: 46.5%;height:90%;background: linear-gradient(60deg,#ec407a,#c2185b);border: thin solid #c70952;color: #FFFFFF;margin-left:4%">
-                    <div style="width: 100%;font-size: 14px;">
-                        CF
-                    </div>
-                    <div style="width: 100%;font-size: 27px;" id="kt02">
-                        0
-                    </div>
-                </div>
-
-            </div>
-            <div class="userNav" style="height: 100%;margin-top: 2px;">
-                <div style="float: left;width: 46.5%;height:90%;background: linear-gradient(60deg,#ec407a,#c2185b);border: thin solid #c70952;color: #FFFFFF;">
-                    <div style="width: 100%;font-size: 14px;">
-                        EAF
-                    </div>
-                    <div style="width: 100%;font-size: 27px;" id="kt01">
-                        0
-                    </div>
-                </div>
-                <div style="float: left;width: 46.5%;height:90%;background: linear-gradient(60deg,#ec407a,#c2185b);border: thin solid #c70952;color: #FFFFFF;margin-left:4%">
-                    <div style="width: 100%;font-size: 14px;">
-                        CF
-                    </div>
-                    <div style="width: 100%;font-size: 27px;" id="kt02">
-                        0
-                    </div>
-                </div>
-
-            </div>
+            </div><br>
             <div>
                 <label>View Chart</label>
                 <a href="https://pivision.indonesiapower.co.id/PIVision/#/Displays/10485/Prognostic-Analytics-bearing-1-P2IS" target="blank_">
@@ -423,7 +181,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <iframe src="http://dispatch2.indonesiapower.co.id:8184/turbin_blt1.html" style="width: 100%;border:none;height: 700px;"></iframe>
+                <!-- <iframe src="http://dispatch2.indonesiapower.co.id:8184/turbin_blt1.html" style="width: 100%;border:none;height: 700px;"></iframe> -->
             </div>
         </div>
     </div>

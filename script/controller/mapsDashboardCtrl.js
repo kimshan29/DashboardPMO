@@ -1,42 +1,24 @@
 mainApp.controller("mapsDashboardCtrl", function ($route, $scope, $interval, $cookies, $http, HttpRequest, Constant, Helper, $routeParams) {
     //Variable
 
+    $scope.dataPH = [];
+    $scope.dataPE = [];
 
+    // var indexMesin = 0;
+    var index = 0;
     //Form Load ======================================================================
     $scope.formLoad = function () {
 
         $scope.getMaps();
         $scope.getDateTime();
         $scope.GetMW();
-
-        var index = 0;
-        $scope.namaUnit = "PLTU";
-        var getNama = function () {
-            var url = "/api/GetLocation";
-            HttpRequest.get(url).success(function (response) {
-                $scope.dataMap = response;
-
-                // console.log(index);
-                var idx = index++;
-                var ListData = $scope.dataMap[idx];
-
-                var LatitudeAktive = ListData.Latitude;
-                var LongitudeAktive = ListData.Longitude;
-
-                $scope.namaUnit = ListData.NamaUnit;
-                // console.log($scope.namaUnit);
-                // $scope.test = ListData.NamaUnit;
-
-                if (index == $scope.dataMap.length)
-                    index = 0
-
-            });
-        }
-
-        $interval(getNama, 5000);
+        // $scope.slidePH();
+        $scope.namaUnit = "UNIT";
 
 
     }
+
+
 
     $scope.getMaps = function () {
 
@@ -54,7 +36,6 @@ mainApp.controller("mapsDashboardCtrl", function ($route, $scope, $interval, $co
             });
             // Adding layer to the map
             map.addLayer(Esri_WorldImagery);
-
 
             // Icon options
             var iconOptions = {
@@ -75,28 +56,26 @@ mainApp.controller("mapsDashboardCtrl", function ($route, $scope, $interval, $co
             var customIconAktive = L.icon(iconOptionsAktive);
 
 
-            // console.log(data.length);
+            // console.log(JSON.stringify($scope.dataLocation));
 
+            $scope.time = 120000;
+            // $scope.time = 5000;
+            var markerAktive = {};
             if ($scope.dataLocation.length > 0) {
 
+                var offset = 0;
                 $scope.dataLocation.forEach(element => {
-                    // console.log(element[Latitude] + element[Longitude]);
-                    // console.log(element.Latitude);
-
                     marker = new L.marker([element.Latitude, element.Longitude], {
                         icon: customIcon
                     }).addTo(map);
 
                 });
 
-                // console.log(data[0]);
 
-                var index = 0;
+
                 var markerAktive = {};
-                var time = 5000;
                 setInterval(function () {
-                    // console.log(data[index++]);
-                    // console.log(index);
+
                     var idx = index++;
                     var ListData = $scope.dataLocation[idx];
 
@@ -105,25 +84,84 @@ mainApp.controller("mapsDashboardCtrl", function ($route, $scope, $interval, $co
                     var LatitudeAktive = ListData.Latitude;
                     var LongitudeAktive = ListData.Longitude;
 
-                    // $scope.namaUnit = ListData.NamaUnit;
-                    // console.log($scope.namaUnit);
-                    // $scope.test = "PLTU";
-
+                    $scope.kodeUnit = ListData.KodeUnit;
+                    $scope.namaUnit = ListData.NamaUnit;
 
                     map.removeLayer(markerAktive)
-
 
                     markerAktive = new L.marker([LatitudeAktive, LongitudeAktive], {
                             icon: customIconAktive
                         }).bindPopup("Nama Unit")
                         .addTo(map);
 
+
+                    $scope.getDataMesin($scope.kodeUnit);
+
+
+                    // console.log($scope.dataLocation.length);
+
                     if (index == $scope.dataLocation.length)
                         index = 0
 
-                }, time);
+
+
+                }, $scope.time);
+
+
             }
         })
+    }
+
+    $scope.getDataMesin = function (kodeUnit) {
+        var xIndex = 0;
+        // GetMesin per 1 detik
+        var apiUrl = "/api/GetDataMesin/" + kodeUnit;
+        // console.log(apiUrl);
+
+        HttpRequest.get(apiUrl).success(function (response) {
+            $scope.dataMesin = response;
+            // console.log($scope.dataMesin);
+
+            var offset = 0;
+            $scope.dataMesin.forEach(function (person) {
+
+                var jumlahArray = person;
+                // console.log(jumlahArray);
+                var intervalMesin = 10000;
+                // var intervalMesin = 2000;
+
+
+                setTimeout(function () {
+                    console.log(person);
+                    $scope.namaMesin = person.mesin;
+                    // Get Data PH
+                    var apiUrlPH = "/api/GetDataPH/" + person.mesin;
+                    console.log(apiUrlPH);
+
+                    HttpRequest.get(apiUrlPH).success(function (responsePH) {
+                        $scope.dataPH = responsePH;
+                        // console.log(JSON.stringify($scope.dataPH));
+
+                    })
+
+                    // Get Data PE 
+                    var apiUrlPE = "/api/GetDataPE/" + person.mesin;
+                    console.log(apiUrlPE);
+
+                    HttpRequest.get(apiUrlPE).success(function (responsePE) {
+                        $scope.dataPE = responsePE
+                        // console.log(JSON.stringify($scope.dataPE));
+
+                    })
+
+                }, intervalMesin + offset);
+                offset += intervalMesin;
+            });
+
+
+        })
+
+
     }
     $scope.getDateTime = function () {
         var interval = setInterval(function () {
@@ -148,6 +186,21 @@ mainApp.controller("mapsDashboardCtrl", function ($route, $scope, $interval, $co
     }
 
 
+    var myIndex = 0;
+    $scope.slidePH = function (kodeMesin) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        myIndex++;
+        if (myIndex > x.length) {
+            myIndex = 1
+        }
+        x[myIndex - 1].style.display = "block";
+
+        setTimeout($scope.slidePH, 2000);
+    }
 
     //Start of Application ===============================================================
     $scope.formLoad();
