@@ -141,8 +141,8 @@
         </div>
         <div style="min-height: 80px; height: 10%; max-height: 10%; text-align: center;margin-top: 5%;">
             <div class="userNav" style="height: 100%;">
-                <div class="{{lsPE.status == true ? 'card-pink': 'card-grey'}}" ng-repeat="lsPE in dataPE">
-                    <div style="width: 100%;font-size: 11px; padding-top: 10px;" uib-tooltip="{{lsPE.nama}}">
+                <div class="{{lsPE.status == true ? 'card-pink': 'card-grey'}}" ng-repeat="lsPE in dataPE" uib-tooltip="{{lsPE.nama}}">
+                    <div style="width: 100%;font-size: 11px; padding-top: 10px;">
                         {{lsPE.kode}}
                     </div>
                     <div style="width: 100%;font-size: 15px;" id="kt01">
